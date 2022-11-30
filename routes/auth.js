@@ -1,3 +1,10 @@
-// Register a new user 
+const express = require("express");
+const router = express.Router();
 
-// Login Exisiting User
+// Define routes
+    // Register a new user
+
+    // Login Exisiting User
+
+
+module.exports = router;

@@ -1,3 +1,10 @@
-// Add a new video-share
+const express = require("express");
+const router = express.Router();
 
-// Display a video Dashboard accesssible to authenticated users only
+// Define routes
+    // Add a new video-share
+
+    // Display a video Dashboard accesssible to authenticated users only
+
+
+module.exports = router;
