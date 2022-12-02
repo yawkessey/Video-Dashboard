@@ -2,15 +2,26 @@
 const express = require("express");
 const app = express();
 
+//Imports the PUG Template Engine
+const pug = require("pug");
+
 //Import cors library
 const cors = require("cors");
 
 // cors middleware
 app.use(cors());
 
+app.set("views", "./views");
+app.set("view engine", "pug");
+
 // Import Routes
 const videoRoutes = require("./routes/video");
 const authRoutes = require("./routes/auth");
+
+// Middleware that makes the body of the request available in req.body
+// Can use these middleware to get paramaters from the body of post requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 db_connection = __dirname + "/data/db.json";
 db_schema = {
@@ -20,22 +31,11 @@ db_schema = {
 
 global.db = require("./data/storage")(db_connection, db_schema);
 console.log("database", db);
-app.get("/who", (req, res) => {
-  newvideo = {
-    title: "New Video",
-    description: "This is a new video",
-    url: "https://www.youtube.com/watch?v=QH2-TGUlwu4",
-  };
-  db.model.videos.push(newvideo);
-  db.update();
-  console.log("db", db.model.videos);
-  console.log("updated database");
-  res.send("Main route is working");
-});
 
 // Routes
 app.use("/video", videoRoutes);
 app.use("/auth", authRoutes);
+
 
 // app.use () ,express.static /demo/index_dev.html checks the folder and searches for the file
 
