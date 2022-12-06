@@ -8,7 +8,7 @@ const pug = require("pug");
 //Import cors library
 const cors = require("cors");
 
-// cors middleware
+// Corss Orign Resource Sharing middleware
 app.use(cors());
 
 app.set("views", "./views");
@@ -35,7 +35,6 @@ console.log("database", db);
 // Routes
 app.use("/video", videoRoutes);
 app.use("/auth", authRoutes);
-
 
 // app.use () ,express.static /demo/index_dev.html checks the folder and searches for the file
 
