@@ -1,0 +1,8 @@
+extends layout 
+block content 
+    h1 Add New Video 
+    form(role='form' method='POST' action=action_url)
+        div.form-group
+            label(for='video_url') video-short link:
+            input#email.form-control(type='text', placeholder='video_url', name='video_url', required)
+        button.btn.btn-primary(type="submit", name="") Add New Video 
