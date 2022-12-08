@@ -1,0 +1,8 @@
+extends layout 
+
+block content 
+    h1 Video Added
+    form(role='form' method='GET' action= "/video/dashboard")
+        button.btn.btn-primary(type="submit") View dashboard
+    form(role='form' method='GET' action= "/video/new_video")
+        button.btn.btn-primary(type="submit") Add Another Video
