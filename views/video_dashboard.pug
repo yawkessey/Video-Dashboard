@@ -1,7 +1,8 @@
 extends layout 
 block content
     h1 Video Dashboard
-    ul
+    ul(style="list-style: none")
         each video, i in videos 
             li
-                iframe(width="389" height="692" src=video.video_url frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                h2=video.video_title
+                iframe(width="560" height="340" src=video.video_url frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
