@@ -25,8 +25,8 @@ class Video {
     return db.model.videos;
   }
   //TODO: Return videos posted only by the user that is logged in
-  static displayUserVideos(username) {
-    return db.model.videos.filter((video) => video.username === username);
+  static displayUserVideos(name) {
+    return db.model.videos.filter((video) => video.user === name);
   }
 }
 
