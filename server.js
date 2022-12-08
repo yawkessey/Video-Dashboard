@@ -11,12 +11,27 @@ const cors = require("cors");
 // Corss Orign Resource Sharing middleware
 app.use(cors());
 
+// View engine setup
 app.set("views", "./views");
 app.set("view engine", "pug");
 
 // Import Routes
 const videoRoutes = require("./routes/video");
 const authRoutes = require("./routes/auth");
+
+// Session middleware
+//Should I leave this here or should I make it global to other code
+
+const session = require("express-session");
+const { appendFile } = require("fs");
+app.use(
+  session({
+    secret: "ThisIsSupposedToBeASecret",
+    saveUninitialized: false,
+    resave: false,
+    cookie: { maxAge: 1000 * 60 * 60 },
+  })
+);
 
 // Middleware that makes the body of the request available in req.body
 // Can use these middleware to get paramaters from the body of post requests
