@@ -25,10 +25,8 @@ class User {
     // Check if password is correct
     if (user && user.password === credentials.password) {
       console.log("Login successful");
+      return user;
     }
-    // Create a new session for the user
-
-    // Return the session
   }
 
   static logout(session) {
