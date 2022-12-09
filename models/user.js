@@ -21,16 +21,10 @@ class User {
   static login(credentials) {
     // Check if user exists in our database
     const user = this.fetchUserByEmail(credentials.email);
-    console.log("User logging in");
     // Check if password is correct
     if (user && user.password === credentials.password) {
-      console.log("Login successful");
       return user;
     }
-  }
-
-  static logout(session) {
-    // Destroy the session
   }
 }
 

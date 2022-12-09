@@ -1,12 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/user");
-const Video = require("../models/video");
 
-//Access user in other routes
-// const { user } = res.locals
-// Checks if the user is authenticated
-// When trying to access a private route
+// Redirects to login if user attempts private route
 const redirectLogin = (req, res, next) => {
   if (!req.session.userId) {
     res.redirect("/auth/login");
@@ -21,7 +17,6 @@ const redirectHome = (req, res, next) => {
     console.log("Redirect home", req.session.userId);
     res.redirect("/video/dashboard");
   } else {
-    console.log("User is not authenticated");
     next();
   }
 };
@@ -52,7 +47,7 @@ router.post("/register", redirectHome, (req, res) => {
   if (credentials) {
     res.render("account_created");
   } else {
-    // ERROR HANDLING
+    res.redirect("/auth/register");
   }
 });
 
