@@ -1,4 +1,21 @@
 {
-  "users": [],
-  "videos": []
+  "users": [
+    {
+      "name": "yaw",
+      "email": "y@aol.com",
+      "password": "yaw"
+    }
+  ],
+  "videos": [
+    {
+      "user": "yaw",
+      "video_title": "Try This Jazzy 2-5-1 Voicing",
+      "video_url": "https://www.youtube.com/embed/fnPWm_Jb1Dg"
+    },
+    {
+      "user": "yaw",
+      "video_title": "This is how to decide what programming language to learn.",
+      "video_url": "https://www.youtube.com/embed/bkXTW2Z-oXY"
+    }
+  ]
 }

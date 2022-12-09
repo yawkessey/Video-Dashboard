@@ -8,10 +8,69 @@ html
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-            <script src="app_code_dev.js"></script>
-
     body
+        nav.navbar.navbar-dark.bg-dark
+            .container-fluid
+                .navbar-header 
+                    a.navbar-brand(href="/video/dashboard") Video Sharing
+                ul.nav.navbar-nav.mr-auto(style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 12px")
+                    li.active   
+                        a(href="/video/dashboard/mine") My Videos
+                    li
+                        a(href="/video/dashboard/all") All Videos
+                    li 
+                        a(href="/video/new_video") Add Video
+                    li 
+                        a(href="/auth/login") Login
+                    li 
+                        a(href="/auth/register") Register
+                    li 
+                        a(href="/auth/logout") Logout                    
         .row
             .col-4
             .col-4
                 block content
+
+//- nav(class="navbar navbar-dark bg-dark")
+//-     a(class="navbar-brand" href="/video/dashboard") Youtube Sharing
+//-     button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+//-         span(class="navbar-toggler-icon")
+
+//-     div(class="collapse show navbar-collapse" id="navbarSupportedContent")
+//-         ul(class="navbar-nav mr-auto")
+//-             li(class="nav-item active")
+//-                 a(class="nav-link" href="/video/dashboard")
+//-                 span(class="sr-only")
+//-             li.nav-item
+//-                 a(class="nav-link" href="/video/dashboard") Test
+//-             li(class="nav-item dropdown")
+//-                 a(class="nav-link dropdown-toggle" href="/video/dashboard" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+//-                     Dropdown
+//-                 div(class="dropdown-menu" aria-labelledby="navbarDropdown")
+//-                     a(class="dropdown-item" href="/video/dashboard") Action
+//-                 div(class="drown-divider")
+//-                     a(class="dropdown-item" href="/video/dashboard") Another Action 
+//-             li.nav-item
+//-                 a(class="nav-link disabled" href="/video/dashboard") Disabled
+
+//- nav(class="navbar navbar-expand-lg navbar-light bg-light")
+//-     a(class="navbar-brand" href="/video/dashboard")Navbar
+//-     button(class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation")
+//-         span (class="navbar-toggler-icon")
+//-     div (class="collapse navbar-collapse" id="navbarSupportedContent")
+//-         ul (class="navbar-nav mr-auto")
+//-             li(class="nav-item active")
+//-                 a(class="nav-link" href="/video/dashboard")Home 
+//-                     span (class="sr-only")
+//-             li (class="nav-item")
+//-                 a (class="nav-link" href="/video/dashboard")Link
+//-             li (class="nav-item dropdown")
+//-                 a (class="nav-link dropdown-toggle" href="/video/dashboard" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+//-                     Dropdown
+//-                 div class="dropdown-menu" aria-labelledby="navbarDropdown">
+//-                     a(class="dropdown-item" href="/video/dashboard")Action
+//-                     a(class="dropdown-item" href="/video/dashboard")Another action
+//-                 div(class="dropdown-divider")
+//-                     a(class="dropdown-item" href="/video/dashboard")Something else here
+//-             li(class="nav-item")
+//-                 a(class="nav-link disabled" href="/video/dashboard")Disabled
