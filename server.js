@@ -45,13 +45,14 @@ db_schema = {
 };
 
 global.db = require("./data/storage")(db_connection, db_schema);
-console.log("database", db);
 
 // Routes
 app.use("/video", videoRoutes);
 app.use("/auth", authRoutes);
 
-// app.use () ,express.static /demo/index_dev.html checks the folder and searches for the file
+app.get("/", (req, res) => {
+  res.render("layout.pug");
+});
 
 // Start the server and listen on port 3000
 app.listen(3000, () => {
