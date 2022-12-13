@@ -4,7 +4,7 @@ const User = require("../models/user");
 
 // Redirects to login if user attempts private route
 const redirectLogin = (req, res, next) => {
-  if (!req.session.userId) {
+  if (!req.session.user_email) {
     res.redirect("/auth/login");
   } else {
     next();
@@ -13,8 +13,8 @@ const redirectLogin = (req, res, next) => {
 
 // Redirects to home if they are already logged in
 const redirectHome = (req, res, next) => {
-  if (req.session.userId) {
-    console.log("Redirect home", req.session.userId);
+  if (req.session.user_email) {
+    console.log("Redirect home", req.session.user_email);
     res.redirect("/video/dashboard");
   } else {
     next();
@@ -29,7 +29,7 @@ router.get("/login", redirectHome, (req, res) => {
 router.post("/login", redirectHome, (req, res) => {
   const user = User.login(req.body);
   if (user) {
-    req.session.userId = user.name;
+    req.session.user_email = user.email;
     req.session.isAuthenticated = true;
     res.redirect("/video/dashboard");
   } else {

@@ -13,7 +13,7 @@ class Video {
     let embededLink =
       "https://www.youtube.com/embed/" + this.extractVideoId(video.video_url);
     db.model.videos.push({
-      user: user.name,
+      user_email: user.email,
       video_title: video.video_title,
       video_url: embededLink,
     });
@@ -24,9 +24,9 @@ class Video {
     // If registered user
     return db.model.videos;
   }
-  //TODO: Return videos posted only by the user that is logged in
-  static displayUserVideos(name) {
-    return db.model.videos.filter((video) => video.user === name);
+
+  static displayUserVideos(email) {
+    return db.model.videos.filter((video) => video.user_email === email);
   }
 }
 

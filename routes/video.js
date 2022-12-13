@@ -4,7 +4,7 @@ const Video = require("../models/video");
 const User = require("./auth");
 
 const redirectLogin = (req, res, next) => {
-  if (!req.session.userId) {
+  if (!req.session.user_email) {
     res.redirect("/auth/login");
   } else {
     next();
@@ -12,9 +12,9 @@ const redirectLogin = (req, res, next) => {
 };
 
 router.use((req, res, next) => {
-  const { userId } = req.session;
-  if (userId) {
-    res.locals.user = db.model.users.find((user) => user.name === userId);
+  const { user_email } = req.session;
+  if (user_email) {
+    res.locals.user = db.model.users.find((user) => user.email === user_email);
   }
   next();
 });
@@ -32,7 +32,7 @@ router.post("/new_video", redirectLogin, (req, res) => {
 // Display a video Dashboard accesssible to authenticated users only
 router.get("/dashboard/:videofilter", redirectLogin, (req, res) => {
   if (req.params.videofilter === "mine") {
-    let videos = Video.displayUserVideos(res.locals.user.name);
+    let videos = Video.displayUserVideos(res.locals.user.email);
     res.render("video_dashboard", { videos });
   } else {
     let videos = Video.displayAllVideos();
