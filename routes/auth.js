@@ -26,8 +26,8 @@ router.get("/login", redirectHome, (req, res) => {
   res.render("login.pug");
 });
 
-router.post("/login", redirectHome, (req, res) => {
-  const user = User.login(req.body);
+router.post("/login", redirectHome, async (req, res) => {
+  const user = await User.login(req.body);
   if (user) {
     req.session.user_email = user.email;
     req.session.isAuthenticated = true;
