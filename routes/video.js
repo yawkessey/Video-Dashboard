@@ -21,28 +21,28 @@ router.use((req, res, next) => {
 
 // Add a new video-share
 router.get("/new_video", redirectLogin, (req, res) => {
-  res.render("add_video.pug");
+  res.render("add_video.pug", { loggedIn: true });
 });
 
 router.post("/new_video", redirectLogin, (req, res) => {
   Video.addVideo(req.body, res.locals.user);
-  res.render("add_video_confirmation.pug");
+  res.render("add_video_confirmation.pug", { loggedIn: true });
 });
 
 // Display a video Dashboard accesssible to authenticated users only
 router.get("/dashboard/:videofilter", redirectLogin, (req, res) => {
   if (req.params.videofilter === "mine") {
     let videos = Video.displayUserVideos(res.locals.user.email);
-    res.render("video_dashboard", { videos });
+    res.render("video_dashboard", { videos, loggedIn: true });
   } else {
     let videos = Video.displayAllVideos();
-    res.render("video_dashboard", { videos });
+    res.render("video_dashboard", { videos, loggedIn: true });
   }
 });
 
 router.get("/dashboard", redirectLogin, (req, res) => {
   let videos = Video.displayAllVideos();
-  res.render("video_dashboard", { videos });
+  res.render("video_dashboard", { videos, loggedIn: true });
 });
 
 module.exports = router;

@@ -9,23 +9,36 @@ html
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     body
-        nav.navbar.navbar-dark.bg-dark
-            .container-fluid
-                .navbar-header 
-                    a.navbar-brand(href="/video/dashboard") Video Sharing
-                ul.nav.navbar-nav.mr-auto(style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 12px")
-                    li.active   
-                        a(href="/video/dashboard/mine") My Videos
-                    li
-                        a(href="/video/dashboard/all") All Videos
-                    li 
-                        a(href="/video/new_video") Share New Video
-                    li 
-                        a(href="/auth/login") Login
-                    li 
-                        a(href="/auth/register") Register
-                    li 
-                        a(href="/auth/logout") Logout                    
+        if loggedIn
+            nav.navbar.navbar-dark.bg-dark
+                .container-fluid
+                    .navbar-header 
+                        a.navbar-brand(href="/video/dashboard") Video Sharing
+                    ul.nav.navbar-nav.mr-auto(style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 12px")
+                        li.active   
+                            a(href="/video/dashboard/mine") My Videos
+                        li
+                            a(href="/video/dashboard/all") All Videos
+                        li 
+                            a(href="/video/new_video") Share New Video
+                        li 
+                            a(href="/auth/logout") Logout  
+        else
+             nav.navbar.navbar-dark.bg-dark
+                .container-fluid
+                    .navbar-header 
+                        a.navbar-brand(href="/video/dashboard") Video Sharing
+                    ul.nav.navbar-nav.mr-auto(style="display: flex; flex-wrap: wrap; flex-direction: row; gap: 12px")
+                        li.active   
+                            a(href="/video/dashboard/mine") My Videos
+                        li
+                            a(href="/video/dashboard/all") All Videos
+                        li 
+                            a(href="/video/new_video") Share New Video
+                        li 
+                            a(href="/auth/login") Login
+                        li 
+                            a(href="/auth/register") Register         
         .row
             .col-4
             .col-4
