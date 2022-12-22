@@ -8,25 +8,69 @@ const saltRounds = 10;
 const db = require("../db");
 
 class User {
-	static fetchUserByEmail(email) {
-		// Fetch user from database
-		// let user = db.model.users.find((user) => user.email === email);
+	static async fetchUserByEmail(email) {
+		if (!email) {
+			//throw a bad request error with a message
+		}
+
+		const query = `
+			SELECT * 
+			FROM users
+			WHERE email = $1
+		`;
+
+		const result = await db.query(query, [email.toLowerCase()]);
+
+		const user = result.rows[0];
+
 		return user;
 	}
 
 	static async register(credentials) {
+		const requiredFields = ["name", "email", "password"];
+		/*
+		requiredFields.forEach(field => {
+			if(!credentials.hasOwnProperty(field)) {
+				throw new error (`Missing ${field} in requrestbody.')
+			}
+		})
+		*/
 		// Check if user exists in our database
-		const existing_user = this.fetchUserByEmail(credentials.email);
+
+		if (credentials.email.indexOf("@") <= 0) {
+			// throw new error("Invalid email");
+			// TODO: Change to BadRequestError
+		}
+		const existing_user = await User.fetchUserByEmail(credentials.email);
 		// Create new user in our database
 		if (!existing_user) {
 			credentials.email = credentials.email.toLowerCase();
 			credentials.password = await bcrypt.hash(credentials.password, saltRounds);
-			// db.model.users.push(credentials);
-			// db.update();
-			return credentials;
+
+			const result = await db.query(
+				`
+				INSERT INTO users (
+					name, 
+					email, 
+					password
+				)
+				VALUES ($1, $2, $3)
+				RETURNING id, email, name
+			`,
+				[credentials.name, credentials.email, credentials.password]
+			);
+
+			const user = result.rows[0];
+
+			return user;
 		} else {
 			console.log("User already exists. Log in.");
 		}
+		/*
+			if (existingUser) [
+				throw new BadRequestError(`Duplicate email: ${credentials.email}`)
+			]
+		*/
 	}
 
 	static async login(credentials) {
@@ -35,6 +79,11 @@ class User {
 		// Check if password is correct
 		if (user) {
 			console.log("Found user:", user);
+			const result = await db.query(`
+				SELECT * 
+				FROM users
+				WHERE  
+			`);
 			const isAuthorized = await bcrypt.compare(credentials.password, user.password);
 			if (isAuthorized) {
 				console.log("Login successful");
