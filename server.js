@@ -40,7 +40,7 @@ db_schema = {
 	videos: [],
 };
 
-global.db = require("./data/storage")(db_connection, db_schema);
+// global.db = require("./data/storage")(db_connection, db_schema);
 
 // Routes
 app.use("/video", videoRoutes);
