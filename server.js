@@ -34,14 +34,6 @@ app.use(
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-db_connection = __dirname + "/data/db.json";
-db_schema = {
-	users: [],
-	videos: [],
-};
-
-// global.db = require("./data/storage")(db_connection, db_schema);
-
 // Routes
 app.use("/video", videoRoutes);
 app.use("/auth", authRoutes);
