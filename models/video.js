@@ -9,24 +9,50 @@ class Video {
 	}
 
 	// Add a new video-share accessible to authenticated users only
-	static addVideo(video, user) {
-		// If registered user
+	static async addVideo(video, user) {
 		let embededLink = "https://www.youtube.com/embed/" + this.extractVideoId(video.video_url);
-		db.model.videos.push({
-			user_email: user.email,
-			video_title: video.video_title,
-			video_url: embededLink,
-		});
-		db.update();
+
+		const result = await db.query(
+			`
+			INSERT INTO videos (
+				user_id, 
+				video_title,
+				video_url
+			)
+			VALUES ($1, $2, $3)
+			RETURNING video_title, video_url
+			`,
+			[user.id, video.video_title, embededLink]
+		);
+
+		const new_video = result.rows[0];
+		return new_video;
 	}
 
-	static displayAllVideos() {
-		// If registered user
-		return db.model.videos;
+	static async displayAllVideos() {
+		const query = `
+			SELECT * 
+			FROM videos
+		`;
+		const result = await db.query(query);
+		const videos = result.rows;
+		return videos;
 	}
 
-	static displayUserVideos(email) {
-		return db.model.videos.filter((video) => video.user_email === email);
+	static async displayUserVideos(email) {
+		const query = `
+			SELECT * 
+			FROM videos
+			WHERE user_id = (
+				SELECT id
+				FROM users
+				WHERE email = $1
+			)
+		`;
+		const result = await db.query(query, [email.toLowerCase()]);
+
+		const userVideos = result.rows;
+		return userVideos;
 	}
 }
 

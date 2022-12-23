@@ -26,7 +26,7 @@ class User {
 		return user;
 	}
 
-	   static async register(credentials) {
+	static async register(credentials) {
 		const requiredFields = ["name", "email", "password"];
 		/*
 		requiredFields.forEach(field => {
@@ -86,7 +86,6 @@ class User {
 		const user = await User.fetchUserByEmail(credentials.email);
 		// Check if password is correct
 		if (user) {
-			console.log("Found user:", user);
 			const isAuthorized = await bcrypt.compare(credentials.password, user.password);
 			if (isAuthorized) {
 				console.log("Login successful");
