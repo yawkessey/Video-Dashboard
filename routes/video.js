@@ -35,7 +35,7 @@ router.get("/dashboard/:videofilter", redirectLogin, async (req, res) => {
 		let videos = await Video.displayUserVideos(res.locals.user.email);
 		res.render("video_dashboard", { videos, loggedIn: true });
 	} else {
-		let videos = Video.displayAllVideos();
+		let videos = await Video.displayAllVideos();
 		res.render("video_dashboard", { videos, loggedIn: true });
 	}
 });
