@@ -26,7 +26,7 @@ class User {
 		return user;
 	}
 
-	static async register(credentials) {
+	   static async register(credentials) {
 		const requiredFields = ["name", "email", "password"];
 		/*
 		requiredFields.forEach(field => {
@@ -74,23 +74,27 @@ class User {
 	}
 
 	static async login(credentials) {
+		const requiredFields = ["name", "email", "password"];
+		/*
+		requiredFields.forEach(field => {
+			if(!credentials.hasOwnProperty(field)) {
+				throw new error (`Missing ${field} in requrestbody.')
+			}
+		})
+		*/
 		// Check if user exists in our database
-		const user = this.fetchUserByEmail(credentials.email);
+		const user = await User.fetchUserByEmail(credentials.email);
 		// Check if password is correct
 		if (user) {
 			console.log("Found user:", user);
-			const result = await db.query(`
-				SELECT * 
-				FROM users
-				WHERE  
-			`);
 			const isAuthorized = await bcrypt.compare(credentials.password, user.password);
 			if (isAuthorized) {
 				console.log("Login successful");
 				return user;
 			}
 		}
-		return null;
+		// throw new UnauthorizedError("Invalid email/password combo")
+		// return null;
 	}
 }
 
