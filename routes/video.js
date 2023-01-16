@@ -45,4 +45,13 @@ router.get("/dashboard", redirectLogin, async (req, res) => {
 	res.render("video_dashboard", { videos, loggedIn: true });
 });
 
+// Get a specific video
+router.get("/:id", redirectLogin, async (req, res) => {});
+
+// Edit a specific video
+router.put("/:id", redirectLogin, async (req, res) => {});
+
+// Delete a specific video
+router.delete("/:id", redirectLogin, async (req, res) => {});
+
 module.exports = router;

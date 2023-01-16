@@ -7,5 +7,10 @@ block content
                 li
                     h2=video.video_title
                     iframe(width="560" height="340" src=video.video_url frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                    //- Function to edit video
+                    a(href="/video/edit/" + video.id) Edit
+                    //- Function to delete video
+                    a(href="/video/delete/" + video.id) Delete
+
         else 
             h1 There are no videos
