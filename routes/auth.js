@@ -33,6 +33,7 @@ router.post("/login", redirectHome, async (req, res) => {
 	if (user) {
 		req.session.user_email = user.email;
 		req.session.isAuthenticated = true;
+		console.log("req.session.user_email:",req.session.user_email);
 		res.redirect("/video/dashboard");
 	} else {
 		res.redirect("/auth/login");
@@ -53,19 +54,20 @@ router.post("/register", redirectHome, (req, res) => {
 	} else {
 		res.redirect("/auth/register");
 	}
-  // return rest.status(201).json({credentials})
+	// return rest.status(201).json({credentials})
 });
 
 // Logout
 router.get("/logout", redirectLogin, (req, res) => {
-	req.session.destroy((err) => {
-		if (err) {
-			console.log(err);
-			res.send(err);
-		} else {
-			res.send("You are logged out!");
-		}
-	});
+	
+	// req.session.destroy((err) => {
+	// 	if (err) {
+	// 		console.log(err);
+	// 		res.send(err);
+	// 	} else {
+	// 		res.send("You are logged out!");
+	// 	}
+	// });
 });
 
 module.exports = router;

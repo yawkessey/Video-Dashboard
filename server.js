@@ -18,7 +18,7 @@ const authRoutes = require("./routes/auth");
 const { PORT } = require("./config");
 
 // Session middleware
-const session = require("express-session");
+const session = require("cookie-session");
 const { appendFile } = require("fs");
 app.use(
 	session({
