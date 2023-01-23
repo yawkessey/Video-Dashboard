@@ -2,7 +2,7 @@ const { Client } = require("pg"); // Node PostgreSQL package
 const { getDatabaseUri } = require("./config");
 require("colors");
 
-const db = new Client({ connectionString: "postgresql://postgres:TSMH60KS9uWfie31IaKt@containers-us-west-125.railway.app:6600/railway" });
+const db = new Client({ connectionString: getDatabaseUri() });
 //getDatabaseUri()
 
 db.connect((err) => {
